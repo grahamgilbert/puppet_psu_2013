@@ -15,7 +15,7 @@ Vagrant::Config.run do |config|
       # doesn't already exist on the user's system.
       master_config.vm.box_url = "http://files.vagrantup.com/precise64.box"
       # We need moar ramz
-      master_config.vm.customize ["modifyvm", :id, "--memory", 1024]
+      #master_config.vm.customize ["modifyvm", :id, "--memory", 1024]
       # Boot with a GUI so you can see the screen. (Default is headless)
       # config.vm.boot_mode = :gui
     
@@ -45,6 +45,24 @@ Vagrant::Config.run do |config|
     master_config.vm.share_folder "puppet_manifests", "/etc/puppet/manifests", "puppet/manifests"
     master_config.vm.share_folder "puppet_modules", "/etc/puppet/modules", "puppet/modules"
   end
+
+config.vm.define :munki do |munki_config|
+
+    munki_config.vm.host_name = "munki.pebbleit.dev"
+    
+    munki_config.vm.box = "precise64"
+  
+    munki_config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  
+    munki_config.vm.network :hostonly, "192.168.33.11"
+
+    
+    munki_config.vm.provision :shell, :path => "puppet_master.sh"
+    # Enable the Puppet provisioner
+    munki_config.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "munki.pp"
+
+  munki_config.vm.share_folder "munki_repo", "/var/www", "munki"
+end
   
   
 end
