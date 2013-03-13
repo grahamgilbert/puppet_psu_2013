@@ -19,6 +19,7 @@ echo "Configuring PuppetLabs repo..."
 repo_deb_path=$(mktemp)
 wget --output-document=${repo_deb_path} ${REPO_DEB_URL} 2>/dev/null
 dpkg -i ${repo_deb_path} >/dev/null
+
 apt-get update >/dev/null
 
 # Install Puppet
@@ -26,3 +27,7 @@ echo "Installing Puppet..."
 apt-get install -y puppet >/dev/null
 
 echo "Puppet installed!"
+
+if [ -e "/etc/puppet/hiera.yaml" ]; then
+  rm -f /etc/puppet/hiera.yaml
+fi

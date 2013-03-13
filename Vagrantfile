@@ -9,11 +9,11 @@ Vagrant::Config.run do |config|
       # please see the online documentation at vagrantup.com.
       master_config.vm.host_name = "puppet.pebbleit.dev"
       # Every Vagrant virtual environment requires a box to build off of.
-      master_config.vm.box = "precise64"
+      master_config.vm.box = "ubuntu-server-1204-x64"
     
       # The url from where the 'master_config.vm.box' box will be fetched if it
       # doesn't already exist on the user's system.
-      master_config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+      master_config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-1204-x64.box"
       # We need moar ramz
       #master_config.vm.customize ["modifyvm", :id, "--memory", 1024]
       # Boot with a GUI so you can see the screen. (Default is headless)
@@ -44,15 +44,16 @@ Vagrant::Config.run do |config|
 
     master_config.vm.share_folder "puppet_manifests", "/etc/puppet/manifests", "puppet/manifests"
     master_config.vm.share_folder "puppet_modules", "/etc/puppet/modules", "puppet/modules"
+    master_config.vm.share_folder "puppet_hiera_data", "/etc/puppet/hieradata", "puppet/hieradata"
   end
 
 config.vm.define :munki do |munki_config|
 
     munki_config.vm.host_name = "munki.pebbleit.dev"
     
-    munki_config.vm.box = "precise64"
+    munki_config.vm.box = "ubuntu-server-1204-x64"
   
-    munki_config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+    munki_config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-1204-x64.box"
   
     munki_config.vm.network :hostonly, "192.168.33.11"
 

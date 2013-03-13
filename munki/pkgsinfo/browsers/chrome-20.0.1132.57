@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>autoremove</key>
+	<false/>
+	<key>catalogs</key>
+	<array>
+		<string>production</string>
+	</array>
+	<key>description</key>
+	<string></string>
+	<key>display_name</key>
+	<string>Google Chrome</string>
+	<key>installer_item_hash</key>
+	<string>db095d1636c38ea19a855f2ac28738c69ee00a3253b8800267741f24dc8f225c</string>
+	<key>installer_item_location</key>
+	<string>browsers/Google Chrome-20.0.1132.57.dmg</string>
+	<key>installer_item_size</key>
+	<integer>49596</integer>
+	<key>installer_type</key>
+	<string>copy_from_dmg</string>
+	<key>installs</key>
+	<array>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>com.google.Chrome</string>
+			<key>CFBundleName</key>
+			<string>Chrome</string>
+			<key>CFBundleShortVersionString</key>
+			<string>20.0.1132.57</string>
+			<key>minosversion</key>
+			<string>10.5.0</string>
+			<key>path</key>
+			<string>/Applications/Google Chrome.app</string>
+			<key>type</key>
+			<string>application</string>
+		</dict>
+	</array>
+	<key>items_to_copy</key>
+	<array>
+		<dict>
+			<key>destination_path</key>
+			<string>/Applications</string>
+			<key>source_item</key>
+			<string>Google Chrome.app</string>
+		</dict>
+	</array>
+	<key>minimum_os_version</key>
+	<string>10.5.0</string>
+	<key>name</key>
+	<string>chrome</string>
+	<key>uninstall_method</key>
+	<string>remove_copied_items</string>
+	<key>uninstallable</key>
+	<true/>
+		<key>postinstall_script</key>
+    	<string>#!/usr/bin/ruby
+
+    # This script enables system wide automatic updates for Google Chrome.
+    # It should work for Chrome versions 18 and later.
+
+    # Originally created in python by Hannes Juutilainen, hjuutilainen@mac.com
+    # Converted/updated to ruby by Riley Shott rshott@sfu.ca
+    # Streamlined by Brian Warsing (https://github.com/dayglojesus)
+    # June 13, 2012
+
+    require 'osx/cocoa'
+    require 'fileutils'
+    require 'pp'
+    include OSX
+
+    CHROME_PATH = '/Applications/Google Chrome.app'
+    CHROME_INFO_PLIST_PATH = "#{CHROME_PATH}/Contents/Info.plist"
+    BRAND_PATH = "/Library/Google/Google\ Chrome\ Brand.plist"
+    KSADMIN = '/Library/Google/GoogleSoftwareUpdate/GoogleSoftwareUpdate.bundle/Contents/MacOS/ksadmin'
+
+    def open_plist(file)
+      NSMutableDictionary.dictionaryWithContentsOfFile(file)
+    end
+
+    def msg(msg)
+      tag = $PROGRAM_NAME
+      time = Time.now
+      puts("#{time} #{tag}: #{msg}")
+    end
+
+    def keystone_install(keystone_path)
+      result = nil
+      error_num = nil
+      install_script = keystone_path + '/Resources/install.py'
+      keystone_payload = keystone_path + '/Resources/Keystone.tbz'
+      if File.exists?(install_script) and File.exists?(keystone_payload)
+        result = system(install_script, "--install=#{keystone_payload}", '--root=/', '--force')
+        error_num = $?.exitstatus
+      else
+        raise "Missing one or more resources: #{keystone_payload}, #{install_script}"
+      end
+      [result, error_num]
+    end
+
+    def register_chrome(plist)
+      result = nil
+      error_num = nil
+      options = %Q{ --register --preserve-tttoken \
+        --productid '#{plist['KSProductID']}' \
+        --version '#{plist['CFBundleShortVersionString']}' \
+        --xcpath '#{CHROME_PATH}' \
+        --url '#{plist['KSUpdateURL']}' \
+        --tag-path '#{CHROME_INFO_PLIST_PATH}' \
+        --tag-key 'KSChannelID' \
+        --brand-path '#{BRAND_PATH}' \
+        --brand-key 'KSBrandID' \
+        --version-path '#{CHROME_INFO_PLIST_PATH}' \
+        --version-key 'KSVersion'
+      }
+      if File.exists?(KSADMIN)
+        command = [KSADMIN, options.gsub!(/    /,' ')].join(' ')
+        result = system(command)
+        error_num = $?.exitstatus
+      else
+        raise "Missing one or more resources: #{KSADMIN}"
+      end
+      [result, error_num]
+    end
+
+    if __FILE__ == $PROGRAM_NAME
+      unless Process.euid == 0
+        raise "You must run this as root!"
+      end
+      unless File.exists?(CHROME_PATH)
+        raise "Google Chrome not installed!"
+      end
+    end
+
+    @plist = open_plist(CHROME_INFO_PLIST_PATH)
+    @keystone_path = "#{CHROME_PATH}/Contents/Versions/" + @plist['CFBundleShortVersionString'] + '/Google Chrome Framework.framework/Frameworks/KeystoneRegistration.framework'
+
+    result, error_num = keystone_install(@keystone_path)
+    unless result
+      msg("Keystone install failed! [#{error_num}]") 
+      exit error_num
+    end
+
+    result, error_num = register_chrome(@plist)
+    unless result
+      msg("Failed to register Chrome! [#{error_num}]") 
+      exit error_num
+    end
+
+    msg("Chrome successfully registered for autoupdates")
+
+    exit 0</string>
+	<key>version</key>
+	<string>20.0.1132.57</string>
+</dict>
+</plist>

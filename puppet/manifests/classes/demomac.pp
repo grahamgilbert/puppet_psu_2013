@@ -1,6 +1,7 @@
 class demomac {  
-    #include user_template
-    #include admin_user
+    include user_template
+    include admin_user
+    include ssh_service
     
     host { 'munki.pebbleit.dev':
       ensure       => 'present',
@@ -17,10 +18,10 @@ class demomac {
     }
     
     class {'mac_admin::munki':
-        repourl =>'http://munki.pebbleit.dev',
-        suppressstopbuttononinstall => true,
-        bootstrap => true,
-        clientidentifier => "pebbleit/pebble_support",
+        repourl          => "http://munki.pebbleit.dev",
+        suppress_stop    => true,
+        bootstrap        => true,
+        clientidentifier => "psu_demo",
     }
     #include printers
 }

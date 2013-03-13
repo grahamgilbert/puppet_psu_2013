@@ -1,17 +1,8 @@
 #Quick Manifest to stand up a demo Puppet Master
-#include apt
 
-##we'll need php and the current version of the php file as well.
 ##Need to install puppet dashboard and configure it
 node default{
-    
-
-
-    
-    #package { 'puppetdb-terminus': 
-    #    ensure => latest,
-    #}
-    
+        
     package {'libapache2-mod-php5':
       ensure  =>  latest,
     }
@@ -39,23 +30,10 @@ node default{
   class { 'puppetdb::master::config': }
     
     class {'dashboard':
-    #  dashboard_ensure          => 'present',
-    #  dashboard_user            => 'puppet-dbuser',
-    #  dashboard_group           => 'puppet-dbgroup',
-    #  dashboard_password        => 'changeme',
-    #  dashboard_db              => 'dashboard_prod',
-    #  dashboard_charset         => 'utf8',
       dashboard_site            => $fqdn,
       dashboard_port            => '3000',
-    #  mysql_root_pw             => 'changemetoo',
-      #passenger                 => true,
       require                   => Package["puppetmaster"],
     }
-    
-    #service{'puppetmaster':
-    #  ensure => running,
-    #  require => Package['puppetmaster'],
-    #  }
       
       
     ##we copy rather than symlinking as puppet will manage this
@@ -95,8 +73,21 @@ node default{
       require => Package['puppetmaster'],
     }
     
-    file {'/etc/puppet/modules':
+    file { '/etc/puppet/modules':
       mode  => '0644',
+      recurse => true,
+    }
+    
+    file { '/etc/puppet/hiera.yaml':
+      ensure => link,
+      owner => root,
+      group => root,
+      source => "/vagrant/puppet/hiera.yaml",
+      notify  =>  [Service['puppetmaster'],Service['puppet-dashboard'],Service['puppet-dashboard-workers']],
+    }
+    
+    file { '/etc/puppet/hieradata':
+      mode => '0644',
       recurse => true,
     }
     
