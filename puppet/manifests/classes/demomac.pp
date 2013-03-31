@@ -1,7 +1,8 @@
 class demomac {  
-    include user_template
-    include admin_user
-    include ssh_service
+    #include user_template
+    #include admin_user
+    #include ssh_service
+    #include printers
     
     host { 'munki.pebbleit.dev':
       ensure       => 'present',
@@ -18,10 +19,14 @@ class demomac {
     }
     
     class {'mac_admin::munki':
-        repourl          => "http://munki.pebbleit.dev",
-        suppress_stop    => true,
-        bootstrap        => true,
-        clientidentifier => "psu_demo",
+        #repourl          => "http://munki.pebbleit.dev",
+        #suppress_stop    => true,
+        #bootstrap        => true,
+        #clientidentifier => "psu_demo",
     }
-    #include printers
+    
+    class {'mac_admin::sus':
+      sus_url_107 => 'http://sus.pebbleit.com/content/catalogs/others/index-lion-snowleopard-leopard.merged-1.sucatalog',
+      sus_url_108 => 'http://sus.pebbleit.com/content/catalogs/others/index-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog',
+      }
 }

@@ -17,7 +17,6 @@ node munki{
   }
   
   file { '/var/www': 
-    ensure  => directory,
     owner   => 'www-data',
     mode    => '0755',
     recurse => true,

@@ -1,1 +1,4 @@
-munki_repo_url: poo
+munki_repo_url: http://munki.pebbleit.com
+munki_client_identifier: all_clients
+sus_url_107: http://sus.pebbleit.com/content/catalogs/others/index-lion-snowleopard-leopard.merged-1_clients.sucatalog
+sus_url_108: http://sus.pebbleit.com/content/catalogs/others/index-mountainlion-lion-snowleopard-leopard.merged-1_clients.sucatalog
