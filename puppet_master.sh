@@ -14,6 +14,13 @@ if [ "$EUID" -ne "0" ]; then
   exit 1
 fi
 
+PUPPET_VER=`puppet --version`
+
+if [ $PUPPET_VER == "3.1.1" ]; then
+	echo "Puppet 3.1.1 is already installed, exiting."
+	exit 0
+fi
+
 # Install the PuppetLabs repo
 echo "Configuring PuppetLabs repo..."
 repo_deb_path=$(mktemp)
