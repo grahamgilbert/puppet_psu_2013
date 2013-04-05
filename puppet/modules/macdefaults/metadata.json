@@ -1,0 +1,21 @@
+{
+  "description": "UNKNOWN",
+  "version": "0.0.1",
+  "author": "Graham Gilbert",
+  "source": "https://github.com/pebbleit/puppet-macdefaults.git",
+  "checksums": {
+    "Modulefile": "cd86d23c2b25d07965aa1b6e19ea1eed",
+    "manifests/init.pp": "815733dd11a66efda0598c3bf528af7b",
+    "README.md": "dd2249ee0105913ec28e62e419f3b625"
+  },
+  "types": [
+
+  ],
+  "project_page": "UNKNOWN",
+  "name": "grahamgilbert-macdefaults",
+  "dependencies": [
+
+  ],
+  "license": "Apache 2.0",
+  "summary": "Manage defaults on an OS X system"
+}

@@ -9,7 +9,7 @@ node munki{
     ensure  =>  latest,
   }
   
-  host { 'munki.pebbleit.dev':
+  host { 'munki.grahamgilbert.dev':
     ensure       => 'present',
     host_aliases => ['munki'],
     ip           => '192.168.33.11',

@@ -1,0 +1,51 @@
+{
+  "types": [
+    {
+      "properties": [
+        {
+          "doc": "The basic property that the resource should be in.  Valid values are ``present``, ``absent``.",
+          "name": "ensure"
+        }
+      ],
+      "parameters": [
+        {
+          "doc": "",
+          "name": "name"
+        },
+        {
+          "doc": "",
+          "name": "profile"
+        }
+      ],
+      "doc": "    Manage Apple Configuration Profiles\n    http://help.apple.com/profilemanager/mac/10.7/#apd88330954-6FA0-4568-A88E-7F6828E763A7\n\n    Example Usage:\n      profile_manager { 'com.puppetlabs.foo':\n        ensure   => present,\n        profile  => '/path/to/profile.mobileconfig',\n      }\n\n    The namevar for this type is the identifier for the profile.\n    Profile = path to the profile on the client system.\n\n\n",
+      "providers": [
+        {
+          "doc": "Provides management of mobileconfig profiles on OS X.  Required binaries: ``/usr/bin/profiles``.    Default for ``operatingsystem`` == ``darwin``.  ",
+          "name": "osx"
+        }
+      ],
+      "name": "profile_manager"
+    }
+  ],
+  "checksums": {
+    "manifests/manage.pp": "86e9079d289f27011dde5375a74ea3d5",
+    "metadata.json": "d34d0b70aba36510fbc2df4e667479ef",
+    "Modulefile": "bf2650e161913a0f36bb65395667f2d2",
+    "lib/puppet/type/profile_manager.rb": "578a75ebe7f9972c7f49f8c5d4e1ad43",
+    "README.md": "718f03e57badf6e2c8b019933b4909f8",
+    "lib/facter/profiles.rb": "54c12303c601579fb2282304363c8425",
+    "lib/puppet/provider/profile_manager/osx.rb": "48a098b58bf3fdf38f32a0261026fa59",
+    "examples/init.pp": "5319c90cf8186cd300bfca154287d7a2"
+  },
+  "description": "This module provides two resource types for managing configuration profiles.",
+  "summary": "Puppet Module for managing OS X Configuration Profiles",
+  "source": "https://github.com/rcoleman/rcoleman-mac_profiles_handler",
+  "dependencies": [
+
+  ],
+  "project_page": "",
+  "author": "rcoleman",
+  "version": "0.2.0",
+  "name": "rcoleman-mac_profiles_handler",
+  "license": "Apache"
+}

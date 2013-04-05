@@ -1,0 +1,26 @@
+{
+  "project_page": "https://github.com/grahamgilbert/grahamgilbert-mac_facts",
+  "version": "0.0.1",
+  "checksums": {
+    "README.md": "af558d26e130e867a0936f4ffbbcb164",
+    "lib/facter/mac_laptop.rb": "968c3317e7a58a4ea57a5707525f741e",
+    "lib/facter/mac_current_user.rb": "fc19de85d8869b3fac136ed015707945",
+    "lib/facter/mac_encryption_enabled.rb": "3f7e07f9f453efec4f9ffec48cfaa604",
+    "lib/facter/mac_memory_in_gb.rb": "d431e7c6bfb30d80f9384e45e21aae06",
+    "lib/facter/mac_has_wireless.rb": "252e09e92f74dc9e9f65d1f1538ca208",
+    "Modulefile": "7af4f1a65ebdccd6547767b44ba4c1c1",
+    "lib/facter/mac_timezone.rb": "a6eac1805fe87b1c87a059becbce9d80"
+  },
+  "types": [
+
+  ],
+  "dependencies": [
+
+  ],
+  "license": "Apache License, Version 2.0",
+  "summary": "A collection of Facts to aid with the administration of OS X machines",
+  "description": "Some simple Facts that may help with configuring OS X client machines",
+  "source": "UNKNOWN",
+  "author": "grahamgilbert",
+  "name": "grahamgilbert-mac_facts"
+}

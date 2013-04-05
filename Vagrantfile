@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
       # All Vagrant configuration is done here. The most common configuration
       # options are documented and commented below. For a complete reference,
       # please see the online documentation at vagrantup.com.
-      master_config.vm.hostname = "puppet.pebbleit.dev"
+      master_config.vm.hostname = "puppet.grahamgilbert.dev"
       # Every Vagrant virtual environment requires a box to build off of.
       master_config.vm.box = "ubuntu-server-1204-x64"
     
@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
 
 config.vm.define :munki do |munki_config|
 
-    munki_config.vm.hostname = "munki.pebbleit.dev"
+    munki_config.vm.hostname = "munki.grahamgilbert.dev"
     
     munki_config.vm.box = "ubuntu-server-1204-x64"
   
