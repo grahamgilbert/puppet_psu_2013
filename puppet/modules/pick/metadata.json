@@ -1,0 +1,24 @@
+{
+  "description": "Puppet function for data-lookups based on a provided lookup-order",
+  "checksums": {
+    "spec/spec_helper.rb": "efc1ac884a0827ea66e7eecd5c707415",
+    "spec/unit/puppet/parser/functions/pick_spec.rb": "0ae358381f93f743b3d33d0e51098ff0",
+    "Rakefile": "76f486d5bfa496ae62049a6998725358",
+    "README.markdown": "dd29b641baf21559d32e582225ec4c7d",
+    "Modulefile": "8e2543667cecffd2f6d8ea1a0400bf59",
+    "lib/puppet/parser/functions/pick.rb": "15fded8776f9cb653202a8e5e9776a27"
+  },
+  "summary": "Puppet function for data-lookups based on a provided lookup-order",
+  "source": "git://github.com/glarizza/puppet-pick.git",
+  "dependencies": [
+
+  ],
+  "project_page": "https://github.com/glarizza/puppet-pick",
+  "author": "Gary Larizza",
+  "types": [
+
+  ],
+  "version": "0.0.1",
+  "name": "puppet-pick",
+  "license": "Apache 2.0"
+}
