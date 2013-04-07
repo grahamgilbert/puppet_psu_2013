@@ -21,7 +21,9 @@ class mac_admin::authorization::energy_saver(
     $group = $mac_admin::params::default_group,
     $ensure = $mac_admin::params::authorization_ensure,
     ) inherits mac_admin::params {
-
+	
+	include mac_admin::authorization::setup
+	
     macauthorization { 'system.preferences.energy_saver':
       ensure     => $ensure,
       allow_root => 'true',

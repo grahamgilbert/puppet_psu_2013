@@ -21,7 +21,9 @@ class mac_admin::authorization::network(
     $group = $mac_admin::params::default_group,
     $ensure = $mac_admin::params::authorization_ensure,
     ) inherits mac_admin::params {
-
+		
+	include mac_admin::authorization::setup
+	
     macauthorization { 'system.preferences.network':
         ensure     => $ensure,
         allow_root => 'true',

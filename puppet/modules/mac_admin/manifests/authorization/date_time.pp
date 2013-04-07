@@ -22,6 +22,8 @@ class mac_admin::authorization::date_time(
     $ensure = $mac_admin::params::authorization_ensure,
     ) inherits mac_admin::params {
 
+	include mac_admin::authorization::setup
+	
     macauthorization { 'system.preferences.datetime':
       ensure     => $ensure,
       allow_root => 'true',
