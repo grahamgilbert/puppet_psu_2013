@@ -11,6 +11,7 @@
 	<key>managed_installs</key>
 	<array>
 		<string>firefox</string>
+        <string>gimp</string>
 	</array>
 
 

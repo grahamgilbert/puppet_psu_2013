@@ -2,20 +2,38 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "ubuntu-server-1204-x64"
+  
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--memory", "1024"]
+  end
+
+  # The url from where the 'master_config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system.
+  # master_config.vm.box_url = "http://files.vagrantup.com/precise64_vmware_fusion.box"
+  # Uncomment the next line if you're using Virtualbox
+  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-1204-x64.box"
+  
+  config.vm.provision :shell, :path => "puppet_master.sh"
+  
+  config.vm.define :munki do |munki|
+
+    munki.vm.hostname = "munki.grahamgilbert.dev"
+
+    munki.vm.network :private_network, ip: "192.168.33.11"
+
+    munki.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "munki.pp"
+
+    munki.vm.synced_folder "munki", "/var/www/"
+  end
+  
   config.vm.define :master do |master_config|
 
       # All Vagrant configuration is done here. The most common configuration
       # options are documented and commented below. For a complete reference,
       # please see the online documentation at vagrantup.com.
       master_config.vm.hostname = "puppet.grahamgilbert.dev"
-      # Every Vagrant virtual environment requires a box to build off of.
-      master_config.vm.box = "ubuntu-server-1204-x64"
-    
-      # The url from where the 'master_config.vm.box' box will be fetched if it
-      # doesn't already exist on the user's system.
-      master_config.vm.box_url = "http://files.vagrantup.com/precise64_vmware_fusion.box"
-      # Uncomment the next line if you're using Virtualbox
-      # master_config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-1204-x64.box"
       # We need moar ramz
       #master_config.vm.customize ["modifyvm", :id, "--memory", 1024]
       # Boot with a GUI so you can see the screen. (Default is headless)
@@ -40,7 +58,6 @@ Vagrant.configure("2") do |config|
       # an identifier, the second is the path on the guest to mount the
       # folder, and the third is the path on the host to the actual folder.
       
-      master_config.vm.provision :shell, :path => "puppet_master.sh"
       # Enable the Puppet provisioner
       master_config.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "default.pp"
 
@@ -48,26 +65,5 @@ Vagrant.configure("2") do |config|
     master_config.vm.synced_folder "puppet/modules", "/etc/puppet/modules"
     master_config.vm.synced_folder "puppet/hieradata", "/etc/puppet/hieradata"
   end
-
-config.vm.define :munki do |munki_config|
-
-    munki_config.vm.hostname = "munki.grahamgilbert.dev"
-    
-    munki_config.vm.box = "ubuntu-server-1204-x64"
-  
-    munki_config.vm.box_url = "http://files.vagrantup.com/precise64_vmware_fusion.box"
-    # Uncomment the next line if you're using Virtualbox
-    # munki_config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-1204-x64.box"
-  
-    munki_config.vm.network :private_network, ip: "192.168.33.11"
-
-    
-    munki_config.vm.provision :shell, :path => "puppet_master.sh"
-    # Enable the Puppet provisioner
-    munki_config.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "munki.pp"
-
-  munki_config.vm.synced_folder "munki", "/var/www/"
-end
-  
   
 end

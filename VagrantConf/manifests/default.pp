@@ -74,7 +74,8 @@ node default{
     }
     
     file { '/etc/puppet/modules':
-      mode  => '0644',
+      owner => root,
+      group => root,
       recurse => true,
     }
     
@@ -84,6 +85,20 @@ node default{
       group => root,
       source => "/vagrant/puppet/hiera.yaml",
       notify  =>  [Service['puppetmaster'],Service['puppet-dashboard'],Service['puppet-dashboard-workers']],
+    }
+    
+    file { '/etc/puppet/stathat.yaml':
+      ensure => link,
+      owner => root,
+      group => root,
+      source => "/vagrant/puppet/stathat.yaml",
+      require => Package['stathat'],
+      notify  =>  [Service['puppetmaster'],Service['puppet-dashboard'],Service['puppet-dashboard-workers']],
+    }
+    
+    package {'stathat':
+        ensure => '0.1.5',
+        provider => gem,
     }
     
     file { '/etc/puppet/hieradata':

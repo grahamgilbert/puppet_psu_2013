@@ -44,12 +44,12 @@ class mac_admin::munki(
     }
     
     if ! defined(File['/var/lib/puppet/mac_admin']) {
-      file { '/var/lib/puppet/mac_admin':
-        ensure => directory,
-      }
+        file { '/var/lib/puppet/mac_admin':
+            ensure => directory,
+        }
     }
     
-    ##Write out the contents of the template to a mobileconfig file (this needs to be cleaned up)
+    ##Write out the contents of the template to a mobileconfig file
     
     file {'/var/lib/puppet/mac_admin/com.grahamgilbert.munkiprefs.mobileconfig':
         content => template("mac_admin/com.grahamgilbert.munkiprefs.erb"),

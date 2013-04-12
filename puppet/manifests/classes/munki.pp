@@ -1,24 +1,17 @@
 class munki {
     
-	case $::sp_machine_name {
-		# "MacBook Air":{
-# 			$manifest = "psu_demo_laptop"
-# 		}
-		
-		"Mac Pro":{
-			$manifest = "psu_demo_pro"
-		}
-		
-		default:{
-			$manifest = "psu_demo_laptop"
-		}
-	}
+    # The value of $manifest is set depending on the value of the mac_laptop Facter fact. 
+    $manifest = $::mac_laptop ? {
+        'mac_laptop'  => 'psu_demo_laptop',
+        'mac_desktop' => 'psu_demo_desktop',
+    }
 	
+    # This comes from modules/mac_admin/manifests/munki.pp
 	class { "mac_admin::munki": 
-		repourl                     => "http://munki.grahamgilbert.dev",
-		suppressstopbuttononinstall => true,
-		bootstrap                   => true,
-		clientidentifier            => $manifest,
+		repourl          => "http://munki.grahamgilbert.dev",
+		suppress_stop    => true,
+		bootstrap        => true,
+		clientidentifier => $manifest,
 	}
 	
 }
