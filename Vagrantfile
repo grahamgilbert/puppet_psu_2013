@@ -22,12 +22,16 @@ Vagrant.configure("2") do |config|
     munki.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "munki.pp"
 
     munki.vm.synced_folder "munki", "/var/www/"
+    munki.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--memory", "512"]
+      v.customize ["modifyvm", :id, "--cpus", "1"]
+    end
   end
   
   config.vm.define :master do |master_config|
     master_config.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--memory", "2048"]
-      v.customize ["modifyvm", :id, "--cpus", "2"]
+      v.customize ["modifyvm", :id, "--cpus", "4"]
     end
 
       # All Vagrant configuration is done here. The most common configuration

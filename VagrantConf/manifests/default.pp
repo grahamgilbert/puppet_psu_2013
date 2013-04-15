@@ -87,20 +87,6 @@ node default{
       notify  =>  [Service['puppetmaster'],Service['puppet-dashboard'],Service['puppet-dashboard-workers']],
     }
     
-    file { '/etc/puppet/stathat.yaml':
-      ensure => link,
-      owner => root,
-      group => root,
-      source => "/vagrant/puppet/stathat.yaml",
-      require => Package['stathat'],
-      notify  =>  [Service['puppetmaster'],Service['puppet-dashboard'],Service['puppet-dashboard-workers']],
-    }
-    
-    package {'stathat':
-        ensure => '0.1.5',
-        provider => gem,
-    }
-    
     file { '/etc/puppet/hieradata':
       mode => '0644',
       recurse => true,
