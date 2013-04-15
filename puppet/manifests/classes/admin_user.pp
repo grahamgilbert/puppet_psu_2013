@@ -1,7 +1,6 @@
 class admin_user{
 
     ## Set up our ladmin user
-    include macdefaults
     user { 'ladmin':
         ensure     => 'present',
         comment    => 'ladmin',
@@ -16,6 +15,7 @@ class admin_user{
     }
 
     ## Hide sub-500 users
+    include macdefaults
     mac-defaults { "hide500users":
         require => User["ladmin"],
         domain  => "/Library/Preferences/com.apple.loginwindow",

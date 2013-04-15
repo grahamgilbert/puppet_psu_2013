@@ -19,7 +19,9 @@
 								<key>ClientIdentifier</key>
 								<string><%= clientidentifier -%></string>
 								<key>InstallAppleSoftwareUpdates</key>
-								<true/>
+								<% if install_apple_updates == true -%><true/><% else -%><false/>
+								<% end -%>
+								
 								<key>SoftwareRepoURL</key>
 								<string><%= repourl -%></string>
 								<key>SuppressAutoInstall</key>

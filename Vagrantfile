@@ -4,10 +4,6 @@
 Vagrant.configure("2") do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu-server-1204-x64"
-  
-  config.vm.provider "virtualbox" do |v|
-    v.customize ["modifyvm", :id, "--memory", "1024"]
-  end
 
   # The url from where the 'master_config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -29,6 +25,10 @@ Vagrant.configure("2") do |config|
   end
   
   config.vm.define :master do |master_config|
+    master_config.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--memory", "2048"]
+      v.customize ["modifyvm", :id, "--cpus", "2"]
+    end
 
       # All Vagrant configuration is done here. The most common configuration
       # options are documented and commented below. For a complete reference,

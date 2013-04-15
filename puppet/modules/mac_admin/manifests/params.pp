@@ -3,6 +3,7 @@ class mac_admin::params{
         $repourl = "http://munki"
         $clientidentifier = $::sp_serial_number
         $suppressautoinstall = false
+        $install_apple_updates = false
         $suppress_stop = false
         $bootstrap = false
         $namerurl = "http://macnamer"
