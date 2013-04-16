@@ -79,17 +79,4 @@ node default{
       recurse => true,
     }
     
-    file { '/etc/puppet/hiera.yaml':
-      ensure => link,
-      owner => root,
-      group => root,
-      source => "/vagrant/puppet/hiera.yaml",
-      notify  =>  [Service['puppetmaster'],Service['puppet-dashboard'],Service['puppet-dashboard-workers']],
-    }
-    
-    file { '/etc/puppet/hieradata':
-      mode => '0644',
-      recurse => true,
-    }
-    
 }
