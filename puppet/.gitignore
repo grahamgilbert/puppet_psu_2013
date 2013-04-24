@@ -1,2 +1,4 @@
 modules/wordpress
 .DS_Store
+.tmp/
+modules/
