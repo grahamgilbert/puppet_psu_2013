@@ -1,0 +1,34 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    glarizza/pick (0.0.1)
+    grahamgilbert/macdefaults (0.0.1)
+    grahamgilbert/wan_ip (0.0.1)
+    mosen/cups (1.2.1)
+    puppetlabs/stdlib (4.0.2)
+    rcoleman/mac_profiles_handler (0.2.0)
+
+GIT
+  remote: https://github.com/grahamgilbert/grahamgilbert-mac_facts.git
+  ref: master
+  sha: 45ed02d348f5a0eb486a8b3471f7b49ab48aa51d
+  specs:
+    mac_facts (0.2.0)
+
+GIT
+  remote: https://github.com/grahamgilbert/puppet-mac_admin.git
+  ref: master
+  sha: 9f5d88eaba44f9586e70da9783fdf12a865464e5
+  specs:
+    mac_admin (0.0.1)
+
+DEPENDENCIES
+  glarizza/pick (>= 0)
+  grahamgilbert/macdefaults (>= 0)
+  grahamgilbert/wan_ip (>= 0)
+  mac_admin (>= 0)
+  mac_facts (>= 0)
+  mosen/cups (>= 0)
+  puppetlabs/stdlib (>= 0)
+  rcoleman/mac_profiles_handler (>= 0)
+

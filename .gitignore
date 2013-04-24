@@ -1,7 +1,7 @@
 .DS_Store
 .vagrant
-puppet/.tmp/*
-puppet/modules/*
+puppet/.tmp
+puppet/modules
 
 puppet/.ruby-version
 
