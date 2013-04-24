@@ -1,7 +1,0 @@
-name    'grahamgilbert-wan_ip'
-version '0.0.1'
-author 'grahamgilbert'
-license 'Apache License, Version 2.0'
-summary 'A simple fact to display the host's current WAN IP.'
-description 'A simple fact to display the host's current WAN IP.'
-project_page 'https://github.com/grahamgilbert/puppet-wan_ip'
