@@ -13,11 +13,25 @@ Vagrant.configure("2") do |config|
   
   config.vm.provision :shell, :path => "puppet_master.sh"
   
+  config.vm.define :dash do |dash|
+
+    dash.vm.hostname = "dashboard.grahamgilbert.dev"
+
+    dash.vm.network :private_network, ip: "192.168.33.11"
+
+    dash.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "dashboard.pp"
+
+    dash.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--memory", "512"]
+      v.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+  end
+  
   config.vm.define :munki do |munki|
 
     munki.vm.hostname = "munki.grahamgilbert.dev"
 
-    munki.vm.network :private_network, ip: "192.168.33.11"
+    munki.vm.network :private_network, ip: "192.168.33.12"
 
     munki.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "munki.pp"
 

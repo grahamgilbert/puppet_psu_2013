@@ -15,7 +15,6 @@ if [ "$EUID" -ne "0" ]; then
 fi
 
 PUPPET_VER=`puppet --version`
-
 if [ $PUPPET_VER == "3.1.1" ]; then
 	echo "Puppet 3.1.1 is already installed, exiting."
 	exit 0
