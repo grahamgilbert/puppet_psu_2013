@@ -54,7 +54,7 @@ If you still get errors from Vagrant, just issue ``vagrant reload`` until they c
 
 #Usage
 
-The ``puppet_psu_2013/puppet`` directory is linked to ``/etc/puppet`` on your Puppet Master. You should put your classes in the ``puppet/classes` directory and your modules in the ``puppet/modules`` directory.
+The ``puppet_psu_2013/puppet`` directory is linked to ``/etc/puppet`` on your Puppet Master. You should put your classes in the ``puppet/classes`` directory and your modules in the ``puppet/modules`` directory.
 
 You can access the Puppet Dashboard by hitting http://192.168.33.11:3000 in your web browser.
 
