@@ -18,6 +18,6 @@ mod 'puppetmaster', :git => 'https://github.com/fsalum/puppet-puppetmaster.git'
 mod 'dhoppe/hosts'
 mod 'puppetlabs/puppetdb'
 mod 'puppetlabs/apache'
-mod 'puppetlabs/stdlib'
 mod 'puppetlabs/ruby'
 mod 'puppetlabs/passenger'
+mod 'upstart', :git => "https://github.com/bison/puppet-upstart.git"

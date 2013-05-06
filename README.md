@@ -1,46 +1,63 @@
-vagrant-puppetmaster
-====================
+puppet_psu_2013
+===========
 
-This is a Vagrantfile for running a testing setup for Puppet. It includes a Puppet Master, Puppet Dashboard and PuppetDB. No idea what Vagrant is?
+#What is this?
 
-- Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-- Install [Vagrant](http://downloads.vagrantup.com/)
-- cd to the cloned directory
-- Type in ``vagrant up`` to your terminal window
-- Profit
+This is a production quality Puppet set up, with a server running Puppet Master under Apache and Passenger, with PuppetDB on, a server running Postgres for PuppetDB and a server running Puppet Dashboard, which is also running using Apache and Passenger. There is also a server running Apache which is used as a Munki server in the demo.
 
-##Why?
+#Before you begin
 
-I wanted a full Puppet test environment that I could create and destroy easily. Vagrant gives me that.
+You need the following things configured before using this demo setup:
 
-##The headlines
+* [Vagrant](http://vagrantup.com)
+* [Ruby 1.9.3 via rbenv](http://octopress.org/docs/setup/rbenv/)
+
+You will also need to install the librarian-puppet gem. Once you'd successfully switched to Ruby 1.9.3, its as simple as typing ``gem install librarian-puppet`` into the Terminal.
+
+#Getting started
+
+First you need to download the required Puppet modules - thankfully ``librarian-puppet`` will do that for you. Assuming you cloned this to ~/src/puppet_psu_2013
+
+``` bash
+cd ~/src/puppet_psu_2013/VagrantConf
+librarian-puppet install
+cd ~/src/puppet_psu_2013/puppet
+librarian-puppet install
+```
+
+When starting the Vagrant VMs, there are some cross node dependencies, so they will need to be rebooted a few times to make sure the Puppet provisioner runs completely.
+
+``` bash
+cd ~/src/puppet_psu_2013
+# First boot, this will fail during provisioning the Master
+vagrant up
+# This will boot the rest of the VMs
+vagrant up
+# This will reboot the VMs for the first time
+vagrant reload
+# This will complete the configuration of the Master
+vagrant reload
+```
+
+This will leave you with a fully operational Puppet setup to cut your teeth on.
+
+If you still get errors from Vagrant, just issue ``vagrant reload`` until they clear up. This is just an issue with the various parts being exchanged between the Puppet Master and PuppetDB servers during initial configuration. This only needs to be done once.
+
+## IP Addresses
+
 <table>
-<tr><th>IP Address</th><td>192.168.33.10</td></tr>
-<tr><th>Dashboard URL</th><td>http://192.168.33.10:3000</td></tr>
-<tr><th>Put your manifests in:</th><td>puppet/manifests</td></tr>
-<tr><th>Put your modules in:</th><td>puppet/modules</td></tr>
+<tr><th>Puppet Master</th><td>192.168.33.10</td></tr>
+<tr><th>Dashboard</th><td>192.168.33.11</td></tr>
+<tr><th>Munki</th><td>192.168.33.12</td></tr>
+<tr><th>PuppetDB</th><td>192.168.33.13</td></tr>
 </table>
 
-##A bit more detail on what’s going on
-###Puppet
+#Usage
 
-This will set up the latest version of Puppet running as a master using the built in webbrick server. This is fine for testing, but this (amongst other reasons outlined below) makes it unsuitable for use in production.
+The ``puppet_psu_2013/puppet`` directory is linked to ``/etc/puppet`` on your Puppet Master. You should put your classes in the ``puppet/classes` directory and your modules in the ``puppet/modules`` directory.
 
-Place your manifests and modules in ``puppet/manifests`` and ``puppet/modules`` respectively.
+You can access the Puppet Dashboard by hitting http://192.168.33.11:3000 in your web browser.
 
-The server has the IP address 192.168.33.10 - if your LAN runs on this subnet, make sure you change it in the Vagrantfile.
+#What's next?
 
-Other tweaks have been made to the configuration to make it more suitable for testing than the standard configuration:
-
-- Autosigning is enabled for any host
-- Any client can revoke a certificate (useful when re-deploying a client for example)
-
-These should be locked down to trusted hosts if using these techniques in production.
-
-###Puppet Dashboard
-
-The Dashboard can be accessed at [http://192.168.33.10:3000](http://192.168.33.10:3000). This also runs using webbrick, which makes it unsuitable for a large scale deployment.
-
-###PuppetDB
-
-PuppetDB is configured and provides the inventory service in the Dashboard.
+You can use the manifests in ``VagrantConf/manifests`` to stand up your own Puppet sever setup. Take a look at the Vagrantfile to see what's happening to each VM, adjust the IP addresses and host names in the manifests to match your own environment and you'r good to go.

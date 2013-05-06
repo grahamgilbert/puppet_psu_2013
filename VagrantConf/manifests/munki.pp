@@ -3,25 +3,13 @@
 
 ##Need to install puppet dashboard and configure it
 node munki{
-  include auto_updates
+    
+    include host_conf
     
   package {'libapache2-mod-php5':
     ensure  =>  latest,
   }
-  
-  host { 'munki.grahamgilbert.dev':
-    ensure       => 'present',
-    host_aliases => ['munki'],
-    ip           => '192.168.33.12',
-    target       => '/etc/hosts',
-  }
-  
-  host { 'dashboard.grahamgilbert.dev':
-    ensure       => 'present',
-    host_aliases => ['dashboard'],
-    ip           => '192.168.33.11',
-    target       => '/etc/hosts',
-  }
+ 
   
   file { '/var/www': 
     owner   => 'www-data',

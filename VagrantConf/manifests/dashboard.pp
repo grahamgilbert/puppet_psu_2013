@@ -1,28 +1,28 @@
-#Quick Manifest to stand up a demo Puppet Master
+# Manifest to stand up a Puppet Dashboard
 
-##Need to install puppet dashboard and configure it
 node default{
-    Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
-    
-    exec {'sudo -u puppet-dashboard env RAILS_ENV=production /usr/share/puppet-dashboard/script/delayed_job -p dashboard -n 4 -m start':
+    include host_conf
+
+file {'/etc/init/dashboard_workers.conf':
+    owner => root,
     require => Class['dashboard'],
+    group => root,
+    mode  => '0644',
+    content => '#/etc/init/dashboard_workers.conf.conf
+description "My dashboard Service"
+
+start on (local-filesystems and net-device-up IFACE=eth0)
+stop on shutdown
+
+pre-start exec env RAILS_ENV=production /usr/share/puppet-dashboard/script/delayed_job -p dashboard -n 4 -m start',
 }
-    
-    host { 'puppet.grahamgilbert.dev':
-        ensure       => 'present',
-        host_aliases => ['puppet'],
-        ip           => '192.168.33.10',
-        target       => '/etc/hosts',
-    }
-    
-    exec{'gem install passenger': 
-        require => Package['rubygems'],
-    }
-    
-    user {'www-data':
-          groups => ['puppet-dashboard'],
-          require => Class['dashboard'],
-      }
+
+  # Ensure that the service is running.
+  service { 'dashboard_workers':
+    ensure => running,
+    provider => 'upstart',
+    require => File['/etc/init/dashboard_workers.conf'],
+  }
   
     package {'build-essential':
         ensure => installed,
@@ -36,18 +36,12 @@ node default{
         ensure => installed,
     }
   
-    host { 'dashboard.grahamgilbert.dev':
-        ensure       => 'present',
-        host_aliases => ['dashboard'],
-        ip           => '192.168.33.11',
-        target       => '/etc/hosts',
-    }
 
     class {'dashboard':
         dashboard_site => $fqdn,
         dashboard_workers_start => 'no',
         dashboard_port => '3000',
         passenger      => true,
-        require        => [Host['dashboard.grahamgilbert.dev'],Exec['gem install passenger']]
+        require        => Host['dashboard.grahamgilbert.dev'],
     }
 }

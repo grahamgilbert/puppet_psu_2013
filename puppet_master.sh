@@ -34,6 +34,14 @@ apt-get install -y puppet >/dev/null
 
 echo "Puppet installed!"
 
-if [ -e "/etc/puppet/hiera.yaml" ]; then
-  rm -f /etc/puppet/hiera.yaml
-fi
+# if [ -e "/etc/puppet/hiera.yaml" ]; then
+#   rm -f /etc/puppet/hiera.yaml
+# fi
+
+# # If running in the test environment, modify the hosts file
+# DOMAIN=`facter domain`
+# if [ $DOMAIN == "grahamgilbert.dev" ]; then
+#     echo -e "192.168.33.10\tpuppet.grahamgilbert.dev" >> /etc/hosts
+#     echo -e "192.168.33.11\tdashboard.grahamgilbert.dev" >> /etc/hosts
+#     echo -e "192.168.33.13\tpuppetdb.grahamgilbert.dev" >> /etc/hosts
+# fi

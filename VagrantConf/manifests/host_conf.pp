@@ -1,5 +1,4 @@
-import "classes/*"
-node default {
+class host_conf {
     host { 'puppet.grahamgilbert.dev':
       ensure       => 'present',
       host_aliases => ['puppet'],
@@ -28,4 +27,3 @@ node default {
       target       => '/etc/hosts',
     }
 }
-

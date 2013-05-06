@@ -28,6 +28,14 @@ FORGE
     ripienaar/concat (0.2.0)
 
 GIT
+  remote: https://github.com/bison/puppet-upstart.git
+  ref: master
+  sha: 05a10a3a58de3543eb51bb782a249cebf71f5cd8
+  specs:
+    upstart (0.0.1)
+      puppetlabs/stdlib (>= 0.1.6)
+
+GIT
   remote: https://github.com/fsalum/puppet-puppetmaster.git
   ref: master
   sha: bb28e66a32cfc357f767a83c781c57bef679d726
@@ -56,4 +64,5 @@ DEPENDENCIES
   puppetlabs/stdlib (>= 0)
   puppetlabs/stdlib (>= 0)
   puppetmaster (>= 0)
+  upstart (>= 0)
 
