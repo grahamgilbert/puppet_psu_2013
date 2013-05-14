@@ -51,9 +51,6 @@ Vagrant.configure("2") do |config|
       
       # Enable the Puppet provisioner
       master_config.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "master.pp"
-       # master_config.vm.provision :puppet_server do |puppet|
-#            puppet.puppet_server = "puppet.grahamgilbert.dev"
-#        end
     master_config.vm.synced_folder "puppet/manifests", "/etc/puppet/manifests"
     master_config.vm.synced_folder "puppet/modules", "/etc/puppet/modules"
     master_config.vm.synced_folder "puppet/hieradata", "/etc/puppet/hieradata"
@@ -86,6 +83,19 @@ Vagrant.configure("2") do |config|
     end
   end
   
+  config.vm.define :crypt do |crypt|
+
+    crypt.vm.hostname = "crypt.grahamgilbert.dev"
+
+    crypt.vm.network :private_network, ip: "192.168.33.14"
+
+   crypt.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "crypt.pp"
+    crypt.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--memory", "512"]
+      v.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+  end
+  
   config.vm.define :db do |db|
 
     db.vm.hostname = "puppetdb.grahamgilbert.dev"
@@ -95,23 +105,6 @@ Vagrant.configure("2") do |config|
    db.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "db.pp"
    
     db.vm.provider "virtualbox" do |v|
-      v.customize ["modifyvm", :id, "--memory", "512"]
-      v.customize ["modifyvm", :id, "--cpus", "1"]
-    end
-  end
-  
-  config.vm.define :crypt do |crypt|
-
-    crypt.vm.hostname = "crypt.grahamgilbert.dev"
-
-    crypt.vm.network :private_network, ip: "192.168.33.14"
-
-   crypt.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "crypt.pp"
-   # db.vm.provision :puppet_server do |puppet|
-#        puppet.puppet_server = "puppet.grahamgilbert.dev"
-#    end
-   
-    crypt.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--memory", "512"]
       v.customize ["modifyvm", :id, "--cpus", "1"]
     end

@@ -50,6 +50,7 @@ If you still get errors from Vagrant, just issue ``vagrant reload`` until they c
 <tr><th>Dashboard</th><td>192.168.33.11</td></tr>
 <tr><th>Munki</th><td>192.168.33.12</td></tr>
 <tr><th>PuppetDB</th><td>192.168.33.13</td></tr>
+<tr><th>Crypt</th><td>192.168.33.14</td></tr>
 </table>
 
 #Usage
