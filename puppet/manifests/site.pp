@@ -27,5 +27,12 @@ node default {
       ip           => '192.168.33.13',
       target       => '/etc/hosts',
     }
+    
+    host { 'crypt.grahamgilbert.dev':
+      ensure       => 'present',
+      host_aliases => ['crypt'],
+      ip           => '192.168.33.14',
+      target       => '/etc/hosts',
+    }
 }
 

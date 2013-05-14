@@ -1,52 +1,13 @@
 FORGE
   remote: http://forge.puppetlabs.com
   specs:
-    cprice404/inifile (0.9.0)
     dhoppe/hosts (0.0.4)
     glarizza/pick (0.0.1)
     grahamgilbert/macdefaults (0.0.1)
     grahamgilbert/wan_ip (0.0.1)
     mosen/cups (1.2.1)
-    puppetlabs/apache (0.6.0)
-      puppetlabs/firewall (>= 0.0.4)
-      puppetlabs/stdlib (>= 2.2.1)
-    puppetlabs/apt (1.1.0)
-      puppetlabs/stdlib (>= 2.2.1)
-    puppetlabs/firewall (0.3.0)
-    puppetlabs/mysql (0.6.1)
-      puppetlabs/stdlib (>= 2.2.1)
-    puppetlabs/passenger (0.0.4)
-      puppetlabs/apache (>= 0.0.3)
-      puppetlabs/ruby (>= 0.0.1)
-    puppetlabs/postgresql (2.2.1)
-      puppetlabs/apt (< 2.0.0, >= 1.1.0)
-      puppetlabs/firewall (>= 0.0.4)
-      puppetlabs/stdlib (< 5.0.0, >= 3.2.0)
-      ripienaar/concat (>= 0.2.0)
-    puppetlabs/puppetdb (1.2.1)
-      cprice404/inifile (>= 0.9.0)
-      puppetlabs/firewall (>= 0.0.4)
-      puppetlabs/postgresql (~> 2)
-    puppetlabs/ruby (0.0.2)
     puppetlabs/stdlib (4.0.2)
     rcoleman/mac_profiles_handler (0.2.0)
-    ripienaar/concat (0.2.0)
-
-GIT
-  remote: https://github.com/bison/puppet-upstart.git
-  ref: master
-  sha: 05a10a3a58de3543eb51bb782a249cebf71f5cd8
-  specs:
-    upstart (0.0.1)
-      puppetlabs/stdlib (>= 0.1.6)
-
-GIT
-  remote: https://github.com/fsalum/puppet-puppetmaster.git
-  ref: master
-  sha: bb28e66a32cfc357f767a83c781c57bef679d726
-  specs:
-    puppetmaster (0.0.2)
-      cprice404/inifile (>= 0.9.0)
 
 GIT
   remote: https://github.com/grahamgilbert/grahamgilbert-mac_facts.git
@@ -56,21 +17,22 @@ GIT
     mac_facts (0.2.0)
 
 GIT
+  remote: https://github.com/grahamgilbert/puppet-crypt.git
+  ref: master
+  sha: a2b831a88f71849e411d92c80d0ab6fc567bb5b8
+  specs:
+    crypt (0.0.1)
+      rcoleman/mac_profiles_handler (>= 0.1.0)
+
+GIT
   remote: https://github.com/grahamgilbert/puppet-mac_admin.git
   ref: master
   sha: 9f5d88eaba44f9586e70da9783fdf12a865464e5
   specs:
     mac_admin (0.0.1)
 
-GIT
-  remote: https://github.com/grahamgilbert/puppetlabs-dashboard.git
-  ref: master
-  sha: c7c83cca1a4c312f7f5823a39e52f415dad178e7
-  specs:
-    dashboard (0.0.1)
-
 DEPENDENCIES
-  dashboard (>= 0)
+  crypt (>= 0)
   dhoppe/hosts (>= 0)
   glarizza/pick (>= 0)
   grahamgilbert/macdefaults (>= 0)
@@ -78,17 +40,6 @@ DEPENDENCIES
   mac_admin (>= 0)
   mac_facts (>= 0)
   mosen/cups (>= 0)
-  puppetlabs/apache (>= 0)
-  puppetlabs/apt (>= 0)
-  puppetlabs/firewall (>= 0)
-  puppetlabs/mysql (>= 0)
-  puppetlabs/passenger (>= 0)
-  puppetlabs/postgresql (>= 0)
-  puppetlabs/puppetdb (>= 0)
-  puppetlabs/puppetdb (>= 0)
-  puppetlabs/ruby (>= 0)
   puppetlabs/stdlib (>= 0)
-  puppetmaster (>= 0)
   rcoleman/mac_profiles_handler (>= 0)
-  upstart (>= 0)
 

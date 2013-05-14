@@ -12,6 +12,7 @@
 	<array>
 		<string>firefox</string>
         <string>chrome</string>
+        <string>crypt</string>
 	</array>
 
 

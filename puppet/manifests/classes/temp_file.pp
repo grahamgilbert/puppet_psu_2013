@@ -4,6 +4,6 @@ class temp_file{
         mode    => '0644',
         owner   => 'root',
         group   => 'wheel',
-        content => "Hello from Puppet!",
+        content => "Hello from Puppet!\n",
     }
 }

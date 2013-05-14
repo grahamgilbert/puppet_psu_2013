@@ -15,8 +15,8 @@ Vagrant.configure("2") do |config|
   
   config.vm.define :master do |master_config|
     master_config.vm.provider "virtualbox" do |v|
-      v.customize ["modifyvm", :id, "--memory", "2048"]
-      v.customize ["modifyvm", :id, "--cpus", "4"]
+      v.customize ["modifyvm", :id, "--memory", "1024"]
+      v.customize ["modifyvm", :id, "--cpus", "2"]
         # v.customize ["modifyvm", :id, "--memory", "512"]
 #         v.customize ["modifyvm", :id, "--cpus", "1"]
     end
@@ -90,7 +90,7 @@ Vagrant.configure("2") do |config|
    
     munki.vm.synced_folder "munki", "/var/www/"
     munki.vm.provider "virtualbox" do |v|
-      v.customize ["modifyvm", :id, "--memory", "512"]
+      v.customize ["modifyvm", :id, "--memory", "256"]
       v.customize ["modifyvm", :id, "--cpus", "1"]
     end
   end
@@ -107,6 +107,23 @@ Vagrant.configure("2") do |config|
 #    end
    
     db.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--memory", "512"]
+      v.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+  end
+  
+  config.vm.define :crypt do |crypt|
+
+    crypt.vm.hostname = "crypt.grahamgilbert.dev"
+
+    crypt.vm.network :private_network, ip: "192.168.33.14"
+
+   crypt.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "crypt.pp"
+   # db.vm.provision :puppet_server do |puppet|
+#        puppet.puppet_server = "puppet.grahamgilbert.dev"
+#    end
+   
+    crypt.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--memory", "512"]
       v.customize ["modifyvm", :id, "--cpus", "1"]
     end
