@@ -3,7 +3,7 @@ puppet_psu_2013
 
 #What is this?
 
-This is a production quality Puppet set up, with a server running Puppet Master under Apache and Passenger, with PuppetDB on, a server running Postgres for PuppetDB and a server running Puppet Dashboard, which is also running using Apache and Passenger. There is also a server running Apache which is used as a Munki server in the demo.
+This is a production quality Puppet set up, with a server running Puppet Master under Apache and Passenger, with PuppetDB on, a server running Postgres for PuppetDB and a server running Puppet Dashboard, which is also running using Apache and Passenger. There is also a server running Apache which is used as a Munki server in the demo, and one running the [server for Crypt](https://github.com/grahamgilbert/Crypt-Server) under Apache.
 
 #Before you begin
 

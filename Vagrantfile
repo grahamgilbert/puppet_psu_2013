@@ -65,11 +65,6 @@ Vagrant.configure("2") do |config|
 
     dash.vm.network :private_network, ip: "192.168.33.11"
     dash.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "dashboard.pp"
-    
-    # dash.vm.provision :puppet_server do |puppet|
-#         puppet.puppet_server = "puppet.grahamgilbert.dev"
-#         #puppet.options = "--verbose --debug"
-#     end
 
     dash.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--memory", "512"]
@@ -84,10 +79,6 @@ Vagrant.configure("2") do |config|
     munki.vm.network :private_network, ip: "192.168.33.12"
 
    munki.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "munki.pp"
-   # munki.vm.provision :puppet_server do |puppet|
-#        puppet.puppet_server = "puppet.grahamgilbert.dev"
-#    end
-   
     munki.vm.synced_folder "munki", "/var/www/"
     munki.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--memory", "256"]
@@ -102,9 +93,6 @@ Vagrant.configure("2") do |config|
     db.vm.network :private_network, ip: "192.168.33.13"
 
    db.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "db.pp"
-   # db.vm.provision :puppet_server do |puppet|
-#        puppet.puppet_server = "puppet.grahamgilbert.dev"
-#    end
    
     db.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--memory", "512"]
