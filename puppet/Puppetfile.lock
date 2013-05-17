@@ -6,7 +6,7 @@ FORGE
     grahamgilbert/macdefaults (0.0.1)
     grahamgilbert/wan_ip (0.0.1)
     mosen/cups (1.2.1)
-    puppetlabs/stdlib (4.0.2)
+    puppetlabs/stdlib (4.1.0)
     rcoleman/mac_profiles_handler (0.2.0)
 
 GIT
@@ -19,7 +19,7 @@ GIT
 GIT
   remote: https://github.com/grahamgilbert/puppet-crypt.git
   ref: master
-  sha: a2b831a88f71849e411d92c80d0ab6fc567bb5b8
+  sha: cc9f5720c4a6c3e7443c7c5f6671fef2a4316124
   specs:
     crypt (0.0.1)
       rcoleman/mac_profiles_handler (>= 0.1.0)
@@ -27,9 +27,10 @@ GIT
 GIT
   remote: https://github.com/grahamgilbert/puppet-mac_admin.git
   ref: master
-  sha: 9f5d88eaba44f9586e70da9783fdf12a865464e5
+  sha: 4a5d688be3efa10813da41fced7870b594e2fae5
   specs:
-    mac_admin (0.0.1)
+    mac_admin (0.1.0)
+      rcoleman/mac_profiles_handler (>= 0.1.0)
 
 DEPENDENCIES
   crypt (>= 0)

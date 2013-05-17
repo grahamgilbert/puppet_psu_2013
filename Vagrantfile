@@ -15,20 +15,13 @@ Vagrant.configure("2") do |config|
   
   config.vm.define :master do |master_config|
     master_config.vm.provider "virtualbox" do |v|
-      v.customize ["modifyvm", :id, "--memory", "1024"]
-      v.customize ["modifyvm", :id, "--cpus", "2"]
+      v.customize ["modifyvm", :id, "--memory", "2048"]
+      v.customize ["modifyvm", :id, "--cpus", "4"]
         # v.customize ["modifyvm", :id, "--memory", "512"]
 #         v.customize ["modifyvm", :id, "--cpus", "1"]
     end
 
-      # All Vagrant configuration is done here. The most common configuration
-      # options are documented and commented below. For a complete reference,
-      # please see the online documentation at vagrantup.com.
       master_config.vm.hostname = "puppet.grahamgilbert.dev"
-      # We need moar ramz
-      #master_config.vm.customize ["modifyvm", :id, "--memory", 1024]
-      # Boot with a GUI so you can see the screen. (Default is headless)
-      # config.vm.boot_mode = :gui
     
       # Assign this VM to a host-only network IP, allowing you to access it
       # via the IP. Host-only networks can talk to the host machine as well as
@@ -41,10 +34,6 @@ Vagrant.configure("2") do |config|
       # physical device on your network.
       # config.vm.network :bridged
     
-      # Forward a port from the guest to the host, which allows for outside
-      # computers to access the VM, whereas host only networking does not.
-      #config.vm.forward_port 80, 80
-        
       # Share an additional folder to the guest VM. The first argument is
       # an identifier, the second is the path on the guest to mount the
       # folder, and the third is the path on the host to the actual folder.
@@ -98,16 +87,16 @@ Vagrant.configure("2") do |config|
   
   config.vm.define :db do |db|
 
-    db.vm.hostname = "puppetdb.grahamgilbert.dev"
+      db.vm.hostname = "puppetdb.grahamgilbert.dev"
 
-    db.vm.network :private_network, ip: "192.168.33.13"
+      db.vm.network :private_network, ip: "192.168.33.13"
 
-   db.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "db.pp"
+     db.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "db.pp"
    
-    db.vm.provider "virtualbox" do |v|
-      v.customize ["modifyvm", :id, "--memory", "512"]
-      v.customize ["modifyvm", :id, "--cpus", "1"]
+      db.vm.provider "virtualbox" do |v|
+        v.customize ["modifyvm", :id, "--memory", "512"]
+        v.customize ["modifyvm", :id, "--cpus", "1"]
+      end
     end
-  end
   
 end
