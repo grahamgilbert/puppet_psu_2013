@@ -3,7 +3,7 @@ class admin_user{
     ## Set up our ladmin user
     user { 'ladmin':
         ensure     => 'present',
-        comment    => 'ladmin',
+        comment    => 'Local Admin',
         gid        => '20',
         groups     => ['admin'],
         home       => '/var/ladmin',

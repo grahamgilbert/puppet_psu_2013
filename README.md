@@ -12,7 +12,7 @@ You need the following things configured before using this demo setup:
 * [Vagrant](http://vagrantup.com)
 * [Ruby 1.9.3 via rbenv](http://octopress.org/docs/setup/rbenv/)
 
-You will also need to install the librarian-puppet gem. Once you'd successfully switched to Ruby 1.9.3, its as simple as typing ``gem install librarian-puppet`` into the Terminal.
+You will also need to install the librarian-puppet gem. Once you've successfully switched to Ruby 1.9.3, its as simple as typing ``gem install librarian-puppet`` into the Terminal.
 
 #Getting started
 

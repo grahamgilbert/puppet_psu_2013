@@ -1,4 +1,4 @@
-class crypt {
+class crypt_client {
     
 	if $::mac_laptop == "mac_laptop" {
 		class { 'crypt::client': 

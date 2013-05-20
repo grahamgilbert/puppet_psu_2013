@@ -9,13 +9,13 @@ forge "http://forge.puppetlabs.com"
 #   :git => 'https://github.com/puppetlabs/puppetlabs-apt.git',
 #   :ref => 'feature/master/dans_refactor'
 
-mod 'mac_admin', :git => "https://github.com/grahamgilbert/puppet-mac_admin.git"
-mod 'mac_facts', :git => "https://github.com/grahamgilbert/grahamgilbert-mac_facts.git"
+mod 'grahamgilbert/mac_admin'
+mod 'grahamgilbert/mac_facts'
 mod 'rcoleman/mac_profiles_handler'
 mod 'grahamgilbert/macdefaults'
 mod 'mosen/cups'
 mod 'glarizza/pick'
 mod 'puppetlabs/stdlib'
 mod 'grahamgilbert/wan_ip'
-mod 'crypt', :git => "https://github.com/grahamgilbert/puppet-crypt.git"
+mod 'grahamgilbert/crypt'
 mod 'dhoppe/hosts'
