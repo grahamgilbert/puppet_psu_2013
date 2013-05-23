@@ -39,6 +39,25 @@ vagrant reload
 vagrant reload
 ```
 
+If you get errors about Apache not being able to start on port 8140, SSH into the Puppet Master VM:
+
+``` bash
+vagrant ssh master
+```
+
+And stop the puppetmaster service, then go back to your own computer:
+
+``` bash
+sudo service puppetmaster stop
+exit
+```
+
+Then provision the machine again:
+
+``` bash
+vagrant provision master
+```
+
 This will leave you with a fully operational Puppet setup to cut your teeth on.
 
 If you still get errors from Vagrant, just issue ``vagrant reload`` until they clear up. This is just an issue with the various parts being exchanged between the Puppet Master and PuppetDB servers during initial configuration. This only needs to be done once.

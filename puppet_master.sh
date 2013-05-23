@@ -20,6 +20,12 @@ if [ $PUPPET_VER == "3.1.1" ]; then
 	exit 0
 fi
 
+# another hack to get things working
+if [ $PUPPET_VER == "3.2.1" ]; then
+	echo "Puppet 3.2.1 is already installed, exiting."
+	exit 0
+fi
+
 # Install the PuppetLabs repo
 echo "Configuring PuppetLabs repo..."
 repo_deb_path=$(mktemp)
@@ -30,7 +36,9 @@ apt-get update >/dev/null
 
 # Install Puppet
 echo "Installing Puppet..."
-apt-get install -y puppet >/dev/null
+# apt-get install -y puppet >/dev/null
+# Hack to get things working - specify to use Puppet 3.1.1, 3.2.1 dies with some of Puppet Lab's own modules.
+apt-get install -y puppet=3.1.1-1puppetlabs1 puppet-common=3.1.1-1puppetlabs1 puppetmaster=3.1.1-1puppetlabs1 puppetmaster-common=3.1.1-1puppetlabs1 >/dev/null
 
 echo "Puppet installed!"
 
