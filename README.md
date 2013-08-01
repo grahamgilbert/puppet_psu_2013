@@ -80,4 +80,4 @@ You can access the Puppet Dashboard by hitting http://192.168.33.11:3000 in your
 
 #What's next?
 
-You can use the manifests in ``VagrantConf/manifests`` to stand up your own Puppet sever setup. Take a look at the Vagrantfile to see what's happening to each VM, adjust the IP addresses and host names in the manifests to match your own environment and you'r good to go.
+You can use the manifests in ``VagrantConf/manifests`` to stand up your own Puppet sever setup. Take a look at the Vagrantfile to see what's happening to each VM, adjust the IP addresses and host names in the manifests to match your own environment and you're good to go.
