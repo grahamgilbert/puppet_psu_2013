@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
       # folder, and the third is the path on the host to the actual folder.
       
       # Enable the Puppet provisioner
-      master_config.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "master.pp"
+      master_config.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "master.pp", :working_directory => "/tmp/vagrant-puppet/manifests"
     master_config.vm.synced_folder "puppet/manifests", "/etc/puppet/manifests"
     master_config.vm.synced_folder "puppet/modules", "/etc/puppet/modules"
     master_config.vm.synced_folder "puppet/hieradata", "/etc/puppet/hieradata"
@@ -50,7 +50,7 @@ Vagrant.configure("2") do |config|
     dash.vm.hostname = "dashboard.grahamgilbert.dev"
 
     dash.vm.network :private_network, ip: "192.168.33.11"
-    dash.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "dashboard.pp"
+    dash.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "dashboard.pp", :working_directory => "/tmp/vagrant-puppet/manifests"
 
     dash.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--memory", "512"]
@@ -64,7 +64,7 @@ Vagrant.configure("2") do |config|
 
     munki.vm.network :private_network, ip: "192.168.33.12"
 
-   munki.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "munki.pp"
+   munki.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "munki.pp", :working_directory => "/tmp/vagrant-puppet/manifests"
     munki.vm.synced_folder "munki", "/var/www/"
     munki.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--memory", "256"]
@@ -78,7 +78,7 @@ Vagrant.configure("2") do |config|
 
     crypt.vm.network :private_network, ip: "192.168.33.14"
 
-   crypt.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "crypt.pp"
+   crypt.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "crypt.pp", :working_directory => "/tmp/vagrant-puppet/manifests"
     crypt.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--memory", "512"]
       v.customize ["modifyvm", :id, "--cpus", "1"]
@@ -91,7 +91,7 @@ Vagrant.configure("2") do |config|
 
       db.vm.network :private_network, ip: "192.168.33.13"
 
-     db.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "db.pp"
+     db.vm.provision :puppet, :module_path => "VagrantConf/modules", :manifests_path => "VagrantConf/manifests", :manifest_file  => "db.pp", :working_directory => "/tmp/vagrant-puppet/manifests"
    
       db.vm.provider "virtualbox" do |v|
         v.customize ["modifyvm", :id, "--memory", "512"]

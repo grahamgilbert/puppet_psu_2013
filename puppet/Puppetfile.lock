@@ -3,43 +3,27 @@ FORGE
   specs:
     dhoppe/hosts (0.0.4)
     glarizza/pick (0.0.1)
+    grahamgilbert/crypt (0.0.1)
+      grahamgilbert/mac_admin (>= 0.1.0)
+      rcoleman/mac_profiles_handler (>= 0.1.0)
+    grahamgilbert/mac_admin (0.1.0)
+      grahamgilbert/macdefaults (>= 0.0.1)
+      rcoleman/mac_profiles_handler (>= 0.1.0)
+    grahamgilbert/mac_facts (0.3.0)
     grahamgilbert/macdefaults (0.0.1)
     grahamgilbert/wan_ip (0.0.1)
     mosen/cups (1.2.1)
     puppetlabs/stdlib (4.1.0)
     rcoleman/mac_profiles_handler (0.2.0)
 
-GIT
-  remote: https://github.com/grahamgilbert/grahamgilbert-mac_facts.git
-  ref: master
-  sha: 45ed02d348f5a0eb486a8b3471f7b49ab48aa51d
-  specs:
-    mac_facts (0.2.0)
-
-GIT
-  remote: https://github.com/grahamgilbert/puppet-crypt.git
-  ref: master
-  sha: cc9f5720c4a6c3e7443c7c5f6671fef2a4316124
-  specs:
-    crypt (0.0.1)
-      rcoleman/mac_profiles_handler (>= 0.1.0)
-
-GIT
-  remote: https://github.com/grahamgilbert/puppet-mac_admin.git
-  ref: master
-  sha: 4a5d688be3efa10813da41fced7870b594e2fae5
-  specs:
-    mac_admin (0.1.0)
-      rcoleman/mac_profiles_handler (>= 0.1.0)
-
 DEPENDENCIES
-  crypt (>= 0)
   dhoppe/hosts (>= 0)
   glarizza/pick (>= 0)
+  grahamgilbert/crypt (>= 0)
+  grahamgilbert/mac_admin (>= 0)
+  grahamgilbert/mac_facts (>= 0)
   grahamgilbert/macdefaults (>= 0)
   grahamgilbert/wan_ip (>= 0)
-  mac_admin (>= 0)
-  mac_facts (>= 0)
   mosen/cups (>= 0)
   puppetlabs/stdlib (>= 0)
   rcoleman/mac_profiles_handler (>= 0)

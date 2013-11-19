@@ -1,31 +1,40 @@
 FORGE
   remote: http://forge.puppetlabs.com
   specs:
-    cprice404/inifile (0.9.0)
+    cprice404/inifile (0.10.4)
     dhoppe/hosts (0.0.4)
-    puppetlabs/apache (0.6.0)
-      puppetlabs/firewall (>= 0.0.4)
+    grahamgilbert/mac_admin (0.1.0)
+      grahamgilbert/macdefaults (>= 0.0.1)
+      rcoleman/mac_profiles_handler (>= 0.1.0)
+    grahamgilbert/macdefaults (0.0.1)
+    puppetlabs/apache (0.8.1)
       puppetlabs/stdlib (>= 2.2.1)
-    puppetlabs/apt (1.1.0)
+      ripienaar/concat (>= 0.2.0)
+    puppetlabs/apt (1.2.0)
       puppetlabs/stdlib (>= 2.2.1)
-    puppetlabs/firewall (0.3.0)
-    puppetlabs/mysql (0.6.1)
+    puppetlabs/dashboard (0.0.4)
+      puppetlabs/apache (>= 0.0.4)
+      puppetlabs/mysql (>= 0.3.0)
+      puppetlabs/passenger (>= 0.0.2)
+    puppetlabs/firewall (0.4.0)
+    puppetlabs/mysql (0.9.0)
       puppetlabs/stdlib (>= 2.2.1)
-    puppetlabs/passenger (0.0.4)
+    puppetlabs/passenger (0.1.0)
       puppetlabs/apache (>= 0.0.3)
       puppetlabs/ruby (>= 0.0.1)
-    puppetlabs/postgresql (2.2.0)
+    puppetlabs/postgresql (2.4.1)
       puppetlabs/apt (< 2.0.0, >= 1.1.0)
       puppetlabs/firewall (>= 0.0.4)
       puppetlabs/stdlib (< 5.0.0, >= 3.2.0)
       ripienaar/concat (>= 0.2.0)
-    puppetlabs/puppetdb (1.2.1)
-      cprice404/inifile (>= 0.9.0)
+    puppetlabs/puppetdb (1.5.0)
+      cprice404/inifile (>= 0.10.3)
       puppetlabs/firewall (>= 0.0.4)
       puppetlabs/postgresql (~> 2)
+      puppetlabs/stdlib (>= 2.2.0)
     puppetlabs/ruby (0.0.2)
-    puppetlabs/stdlib (4.0.2)
-    puppetlabs/vcsrepo (0.1.1)
+    puppetlabs/stdlib (4.1.0)
+    puppetlabs/vcsrepo (0.1.2)
     rcoleman/mac_profiles_handler (0.2.0)
     ripienaar/concat (0.2.0)
 
@@ -48,31 +57,25 @@ GIT
 GIT
   remote: https://github.com/grahamgilbert/puppet-crypt.git
   ref: master
-  sha: a2b831a88f71849e411d92c80d0ab6fc567bb5b8
+  sha: 205e5d128df2892898c1679b6ceb70bc45ced102
   specs:
     crypt (0.0.1)
+      grahamgilbert/mac_admin (>= 0.1.0)
       rcoleman/mac_profiles_handler (>= 0.1.0)
-
-GIT
-  remote: https://github.com/grahamgilbert/puppetlabs-dashboard.git
-  ref: master
-  sha: 821b9194afc26b94c1411ae51b417495a4dd5ba7
-  specs:
-    dashboard (0.0.1)
 
 GIT
   remote: https://github.com/stankevich/puppet-python.git
   ref: master
-  sha: cd190e9601b62db33b6451cce3079596dadd1383
+  sha: f508b71d534f3c67db12886fa914cb4ef74bbe7a
   specs:
-    python (1.0.0)
+    python (1.1.4)
 
 DEPENDENCIES
   crypt (>= 0)
-  dashboard (>= 0)
   dhoppe/hosts (>= 0)
   puppetlabs/apache (>= 0)
   puppetlabs/apt (>= 0)
+  puppetlabs/dashboard (>= 0)
   puppetlabs/firewall (>= 0)
   puppetlabs/mysql (>= 0)
   puppetlabs/passenger (>= 0)
@@ -80,7 +83,7 @@ DEPENDENCIES
   puppetlabs/puppetdb (>= 0)
   puppetlabs/ruby (>= 0)
   puppetlabs/stdlib (>= 0)
-  puppetlabs/vcsrepo (= 0.1.1)
+  puppetlabs/vcsrepo (>= 0)
   puppetmaster (>= 0)
   python (>= 0)
   upstart (>= 0)

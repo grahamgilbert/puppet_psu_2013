@@ -36,9 +36,9 @@ apt-get update >/dev/null
 
 # Install Puppet
 echo "Installing Puppet..."
-# apt-get install -y puppet >/dev/null
+apt-get install -y puppet >/dev/null
 # Hack to get things working - specify to use Puppet 3.1.1, 3.2.1 dies with some of Puppet Lab's own modules.
-apt-get install -y puppet=3.1.1-1puppetlabs1 puppet-common=3.1.1-1puppetlabs1 puppetmaster=3.1.1-1puppetlabs1 puppetmaster-common=3.1.1-1puppetlabs1 >/dev/null
+#apt-get install -y puppet=3.1.1-1puppetlabs1 puppet-common=3.1.1-1puppetlabs1 puppetmaster=3.1.1-1puppetlabs1 puppetmaster-common=3.1.1-1puppetlabs1 >/dev/null
 
 echo "Puppet installed!"
 
